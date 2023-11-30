@@ -41,24 +41,72 @@ const cardData = [
     name: "Blue Eyes White Dragon",
     type: "Paper",
     img: `${pathImages}dragon.png`,
-    Wins: [1],
-    losesTo: [2],
+    Wins: [1, 4, 7],
+    losesTo: [2, 5, 8],
   },
   {
     id: 1,
     name: "Dark Magician",
     type: "Rock",
     img: `${pathImages}magician.png`,
-    Wins: [2],
-    losesTo: [0],
+    Wins: [2, 5, 8],
+    losesTo: [0, 3, 6],
   },
   {
     id: 2,
     name: "Exodia",
     type: "Scissors ",
     img: `${pathImages}exodia.png`,
-    Wins: [0],
-    losesTo: [1],
+    Wins: [0, 3, 6],
+    losesTo: [1, 4, 7],
+  },
+  {
+    id: 3,
+    name: "Magic Cylinder",
+    type: "Paper",
+    img: `${pathImages}cylinder.png`,
+    Wins: [1, 4, 7],
+    losesTo: [2, 5, 8],
+  },
+  {
+    id: 4,
+    name: "Pot of Greed",
+    type: "Rock",
+    img: `${pathImages}pot.png`,
+    Wins: [2, 5, 8],
+    losesTo: [0, 3, 6],
+  },
+  {
+    id: 5,
+    name: "Slifer the Sky Dragon",
+    type: "Scissors ",
+    img: `${pathImages}slifer.png`,
+    Wins: [0, 3, 6],
+    losesTo: [1, 4, 7],
+  },
+  {
+    id: 6,
+    name: "Toon World",
+    type: "Paper",
+    img: `${pathImages}toon.png`,
+    Wins: [1, 4, 7],
+    losesTo: [2, 5, 8],
+  },
+  {
+    id: 7,
+    name: "Monster Reborn",
+    type: "Rock",
+    img: `${pathImages}reborn.png`,
+    Wins: [2, 5, 8],
+    losesTo: [0, 3, 6],
+  },
+  {
+    id: 8,
+    name: "Polymerization",
+    type: "Scissors ",
+    img: `${pathImages}polymerization.png`,
+    Wins: [0, 3, 6],
+    losesTo: [1, 4, 7],
   },
 ];
 
@@ -83,6 +131,7 @@ async function getCardImage(IdCard, fieldSide) {
 
     cardImage.addEventListener("mouseover", () => {
       drawSelectedCard(IdCard); //Apresentar carta para visão do player
+      audioPlay("cardHover");
     });
 
     cardImage.addEventListener("click", () => {
@@ -137,6 +186,8 @@ async function updateScore() {
 }
 
 async function drawSelectedCard(index) {
+  state.cardSprites.avatar.style.display = "block";
+
   state.cardSprites.avatar.src = cardData[index].img;
   state.cardSprites.name.innerText = cardData[index].name;
   state.cardSprites.type.innerText = "Attribute : " + cardData[index].type;
@@ -173,6 +224,8 @@ async function ShowHiddenCardFieldsImages(value) {
 }
 
 async function drawCards(cardNumber, fieldSide) {
+  state.cardSprites.avatar.style.display = "none";
+
   for (let i = 0; i < cardNumber; i++) {
     const randomIdCard = await getRandomCardId();
     const cardImage = await getCardImage(randomIdCard, fieldSide);
@@ -204,6 +257,8 @@ async function audioPlay(status) {
 
 async function playBackgroundMusic() {
   const bgm = document.getElementById("bgm");
+
+  bgm.volume = 0.7;
   bgm.play();
 }
 
