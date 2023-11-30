@@ -20,5 +20,5 @@ conceitos abordados:
 - Efeitos Sonoros
 
 ## Adições
-Novos efeitos sonoros
-Mais cartas 
+- Novos efeitos sonoros
+- Mais cartas 
