@@ -1,4 +1,4 @@
-# Yu-Gi-Oh | Jo-ken-po Edition
+## Yu-Gi-Oh | Jo-ken-po Edition
 
 Jogo de jokenpo que criei para explicar conceitos de lógica de programação aplicados a jogos
 
@@ -18,3 +18,7 @@ conceitos abordados:
 - Distribuição aleatória de cartas
 - Lógica de Pedra-Papel-Tesoura entre as cartas
 - Efeitos Sonoros
+
+## Adições
+Novos efeitos sonoros
+Mais cartas 
