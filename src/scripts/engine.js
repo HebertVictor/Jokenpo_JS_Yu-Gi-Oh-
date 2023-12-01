@@ -25,6 +25,14 @@ const state = {
     computerBOX: document.querySelector("#computer-cards"),
   },
   actions: { button: document.getElementById("next-duel") },
+
+  menu: {
+    menuOpen: document.getElementById("menuOpcoes"),
+    changeMusic: document.getElementById("change-music"),
+    changeBgVideo: document.getElementById("change-bg-video"),
+    changeTheme: document.getElementById("change-theme"),
+    bgmSource: document.getElementById("bgm-source"),
+  },
 };
 
 const pathImages = "./src/assets/icons/";
@@ -181,8 +189,7 @@ async function drawButton(text) {
 }
 
 async function updateScore() {
-  state.score.scoreBox.innerText = `Win: ${state.score.playerScore}
-  | Lose: ${state.score.computerScore}`;
+  state.score.scoreBox.innerText = `Win: ${state.score.playerScore} | Lose: ${state.score.computerScore}`;
 }
 
 async function drawSelectedCard(index) {
@@ -250,6 +257,8 @@ async function resetDuel() {
 async function audioPlay(status) {
   const audio = new Audio(`./src/assets/audios/${status}.wav`);
 
+  audio.volume = volumeSlider.value - 0.2;
+
   try {
     audio.play();
   } catch {}
@@ -258,7 +267,6 @@ async function audioPlay(status) {
 async function playBackgroundMusic() {
   const bgm = document.getElementById("bgm");
 
-  bgm.volume = 0.7;
   bgm.play();
 }
 
@@ -272,3 +280,60 @@ function start() {
 }
 
 start();
+
+// menu
+async function openTheMenu() {
+  state.menu.menuOpen.classList.toggle("hidden");
+}
+
+const menuButtons = document.querySelectorAll("button");
+
+menuButtons.forEach(function (button) {
+  button.addEventListener("mouseover", function () {
+    audioPlay("buttonHover");
+  });
+});
+
+const volumeSlider = document.getElementById("volume-slider");
+volumeSlider.addEventListener("input", function () {
+  bgm.volume = volumeSlider.value;
+});
+
+//mudança de musica e background
+
+let currentSongIndex = 0;
+
+const songs = [
+  "./src/assets/audios/yu-gi-oh-full-theme-high-quality.mp3",
+  "./src/assets/audios/egyptian_duel.mp3",
+];
+
+let currentVideoIndex = 0;
+const bgVideos = [
+  "./src/assets/video/yugi.mp4",
+  "./src/assets/video/yugi2.mp4",
+];
+
+async function changeMusicOrVideo(change) {
+  const sourceElement = document.getElementById(change);
+  if (change === "bgm") {
+    try {
+      currentSongIndex = (currentSongIndex + 1) % songs.length;
+
+      sourceElement.src = songs[currentSongIndex];
+
+      await sourceElement.play();
+    } catch (error) {
+      console.error("Erro ao mudar o som:", error);
+    }
+  }
+  if (change === "video") {
+    try {
+      currentVideoIndex = (currentVideoIndex + 1) % bgVideos.length;
+      sourceElement.src = bgVideos[currentVideoIndex];
+      await sourceElement.play();
+    } catch (error) {
+      console.error("Erro ao mudar o video de fundo:", error);
+    }
+  }
+}
