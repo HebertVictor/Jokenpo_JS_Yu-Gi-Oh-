@@ -22,3 +22,5 @@ conceitos abordados:
 ## Adições
 - Novos efeitos sonoros
 - Mais cartas 
+- Menu para mudar musica, volume e video
+  
