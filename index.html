@@ -26,23 +26,42 @@
 
 <body>
     <audio id="bgm" loop>
-        <source src="./src/assets/audios/egyptian_duel.mp3" type="audio/mp3">
+        <source id=song-source src="./src/assets/audios/egyptian_duel.mp3" type="audio/mp3">
     </audio>
 
     <div class="bg-video">
-        <video class="video" autoplay loop muted>
-            <source src="./src/assets/video/yugi.mp4" type="video/mp4" />
+        <video id="video" autoplay loop muted>
+            <source id="video-source" src="./src/assets/video/yugi.mp4" type="video/mp4" />
         </video>
     </div>
     <div class="container">
         <div class="container__left framed-golden-2">
+
+            <!-- Menu  -->
+            <div class="menu-container">
+                <button id="menu-buttom" class="rpgui-button" onclick="openTheMenu()">
+                    Menu</button>
+
+                <div id="menuOpcoes" class="framed-golden hidden">
+
+                    <button id="change-music" class="frame menus" onclick="changeMusicOrVideo('bgm');">Change
+                        Music</button>
+                    <button id="change-bg-video" class="frame menus" onclick="changeMusicOrVideo('video')">Change
+                        Video</button>
+
+                    <label for="volume-slider" id="volume-slider-label"> Volume:</label>
+                    <input id="volume-slider" type="range" min="0" max="1" value="1" step="any">
+
+                </div>
+            </div>
+
             <div class="score-box frame">
                 <span id="score_points">Win : 0 | Lose: 0</span>
             </div>
             <div class="menu_avatar">
                 <img id="card-image" width="171px" height="228px">
             </div>
-            <div class="card_details frame">
+            <div class="card_details frame ">
                 <p id="card-name"> Selecione </p>
                 <p id="card-type"> uma carta</p>
             </div>
