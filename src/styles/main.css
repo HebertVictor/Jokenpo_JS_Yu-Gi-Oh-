@@ -6,7 +6,8 @@ button,
 a,
 img:hover,
 button:hover,
-a:hover {
+a:hover,
+#volume-slider {
   cursor: url("../assets/cursor/yamiyugicursorGLOW.png"), auto;
 }
 
@@ -141,4 +142,28 @@ a:hover {
 
 .myCards:hover {
   transform: scale(1.2);
+}
+
+#menuOpcoes {
+  text-align: center;
+}
+.menu-container {
+  text-align: center;
+}
+
+.menus {
+  padding: 2px;
+  margin: 2px;
+}
+
+.hidden {
+  display: none;
+}
+
+#volume-slider-label {
+  font-size: 0.8rem;
+}
+
+#volume-slider {
+  accent-color: #ffc107;
 }
